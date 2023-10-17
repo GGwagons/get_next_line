@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:13:34 by miturk            #+#    #+#             */
-/*   Updated: 2023/10/10 09:54:51 by miturk           ###   ########.fr       */
+/*   Updated: 2023/10/17 17:39:47 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!*s)
+		return (NULL);
 	while (*s != '\0')
 	{
 		if (*s++ == (char)c)
@@ -34,7 +36,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str3;
 	int		i;
@@ -61,48 +63,30 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str3);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strcpy(char *dest, char *src)
 {
-	const char	*org;
-	char		*dup;
-	int			orglen;
-	int			i;
+	int	i;
 
 	i = 0;
-	orglen = ft_strlen(s);
-	dup = (char *)malloc(sizeof (char) * orglen + 1);
-	if (!dup)
-		return (0);
-	org = s;
-	while (org[i] != '\0')
+	while (src[i] != '\0')
 	{
-		dup[i] = org[i];
+		dest[i] = src[i];
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	dest[i] = '\0';
+	return (dest);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t			i;
-	char const		*str;
-	char			*sub;
-
-	str = s;
-	if (start >= ft_strlen(s) || len == 0)
-		return (ft_strdup(""));
-	if (len >= ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	sub = (char *)malloc((len + 1) * sizeof(char));
-	if (!sub)
+	if (!*s)
 		return (NULL);
-	i = 0;
-	while (i < len && s[start + i] != '\0')
+	while (*s != '\0')
 	{
-		sub[i] = str[start + i];
-		i++;
+		if (*s++ == (char)c)
+			return ((char *)--s);
 	}
-	sub[i] = '\0';
-	return (sub);
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
