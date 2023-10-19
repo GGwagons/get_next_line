@@ -6,25 +6,27 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:13:34 by miturk            #+#    #+#             */
-/*   Updated: 2023/10/17 17:39:47 by miturk           ###   ########.fr       */
+/*   Updated: 2023/10/19 16:45:53 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
-	if (!*s)
+	if (!s)
 		return (NULL);
 	while (*s != '\0')
 	{
@@ -60,6 +62,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		k++;
 	}
 	str3[k] = '\0';
+	str3[k] = '\0';
+	free(s1);
 	return (str3);
 }
 
@@ -76,17 +80,26 @@ char	*ft_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
-
-char	*ft_strchr(const char *s, int c)
+char	*ft_strdup(char *s)
 {
-	if (!*s)
+	const char	*org;
+	char		*dup;
+	int			orglen;
+	int			i;
+
+	i = 0;
+	if (!s || s[0] == '\0')
 		return (NULL);
-	while (*s != '\0')
+	orglen = ft_strlen(s);
+	dup = (char *)malloc(sizeof (char) * orglen + 1);
+	if (!dup)
+		return (0);
+	org = s;
+	while (org[i] != '\0')
 	{
-		if (*s++ == (char)c)
-			return ((char *)--s);
+		dup[i] = org[i];
+		i++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (NULL);
+	dup[i] = '\0';
+	return (dup);
 }
