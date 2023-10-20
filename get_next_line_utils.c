@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:13:34 by miturk            #+#    #+#             */
-/*   Updated: 2023/10/19 16:45:53 by miturk           ###   ########.fr       */
+/*   Updated: 2023/10/19 17:22:30 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	k = 0;
 	str3 = (char *)malloc(i + j + 1);
 	if (str3 == NULL)
-		return (NULL);
+		return (free(s2), NULL);
 	while (k < i)
 	{
 		str3[k] = s1[k];
@@ -67,19 +67,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str3);
 }
 
-char	*ft_strcpy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 char	*ft_strdup(char *s)
 {
 	const char	*org;

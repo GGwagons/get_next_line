@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:14:01 by miturk            #+#    #+#             */
-/*   Updated: 2023/10/19 15:46:07 by miturk           ###   ########.fr       */
+/*   Updated: 2023/10/19 17:49:39 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 42
 # endif
 
 # include <unistd.h>
@@ -25,11 +25,9 @@
 # include <fcntl.h>
 # include <stddef.h>
 
-
 char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strcpy(char *dest, char *src);
 char	*get_next_line(int fd);
 char	*ft_read_from_file_to_buffer(int fd, char **line_buffer);
 char	*ft_clean_buffer(char **line_buffer);
