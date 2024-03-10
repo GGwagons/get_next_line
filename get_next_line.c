@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:13:08 by miturk            #+#    #+#             */
-/*   Updated: 2023/10/19 17:50:05 by miturk           ###   ########.fr       */
+/*   Updated: 2023/10/20 11:34:07 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,12 @@ char	*ft_read_from_file_to_buffer(int fd, char **line_buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*line_buffer = NULL;
+	static char	*line_buffer;
 	char		*newline;
 	char		*tmp;
 
+	if (!line_buffer)
+		line_buffer = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	tmp = ft_read_from_file_to_buffer(fd, &line_buffer);
@@ -116,7 +118,7 @@ char	*get_next_line(int fd)
 	line_buffer = ft_clean_buffer(&line_buffer);
 	return (newline);
 }
-
+/*
 int	main(void)
 {
 	char	*line;
@@ -135,4 +137,4 @@ int	main(void)
 	free(line);
 	if (!close(fd))
 		return (0);
-}
+}*/
